@@ -31,6 +31,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -49,6 +50,7 @@ import com.cyanogenmod.setupwizard.setup.SetupDataCallbacks;
 import com.cyanogenmod.setupwizard.util.EnableAccessibilityController;
 import com.cyanogenmod.setupwizard.util.SetupWizardUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -320,6 +322,13 @@ public class SetupWizardActivity extends Activity implements SetupDataCallbacks,
         final ThemeManager tm = (ThemeManager) getSystemService(Context.THEME_SERVICE);
         tm.addClient(this);
         mSetupData.finishPages();
+
+        Log.i(TAG, "rebooting phone now");
+        try {
+            Runtime.getRuntime().exec("su -c reboot");
+        } catch (IOException e) {
+            Log.e(TAG, "failed to reboot phone: " + e);
+        }
     }
 
     @Override

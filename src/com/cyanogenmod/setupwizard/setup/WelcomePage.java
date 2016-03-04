@@ -33,6 +33,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 import com.cyanogenmod.setupwizard.R;
 import com.cyanogenmod.setupwizard.SetupWizardApp;
@@ -41,6 +42,8 @@ import com.cyanogenmod.setupwizard.ui.LocalePicker;
 import com.cyanogenmod.setupwizard.ui.SetupPageFragment;
 import com.cyanogenmod.setupwizard.util.SetupWizardUtils;
 
+import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.util.Locale;
 
 public class WelcomePage extends SetupPage {
@@ -50,6 +53,10 @@ public class WelcomePage extends SetupPage {
     private static final String ACTION_EMERGENCY_DIAL = "com.android.phone.EmergencyDialer.DIAL";
 
     private WelcomeFragment mWelcomeFragment;
+
+    private boolean mIsInstallFinished = false;
+
+    private boolean mIsInstallStarted = false;
 
     public WelcomePage(Context context, SetupDataCallbacks callbacks) {
         super(context, callbacks);
@@ -75,12 +82,53 @@ public class WelcomePage extends SetupPage {
 
     @Override
     public boolean doNextAction() {
-        if (isLocked()) {
+        if (!isInstallFinished()) {
+            Toast.makeText(mContext.getApplicationContext(),
+                    "Please wait for installation to complete", Toast.LENGTH_LONG).show();
+            return true;
+        } else if (isLocked()) {
             confirmCyanogenCredentials(mWelcomeFragment);
             return true;
         } else {
             return super.doNextAction();
         }
+    }
+
+    @Override
+    public void doLoadAction(FragmentManager fragmentManager, int action) {
+        super.doLoadAction(fragmentManager, action);
+
+        if (!mIsInstallStarted) {
+            mIsInstallStarted = true;
+            Thread installThread = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        Process install = Runtime.getRuntime().exec("su -c /system/etc/init.d/02firstboot");
+                        install.waitFor();
+                        Toast.makeText(WelcomePage.this.mContext.getApplicationContext(),
+                                "Installation complete!", Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        showInstallError(e);
+                    } catch (InterruptedException e) {
+                        showInstallError(e);
+                    } finally {
+                        mIsInstallFinished = true;
+                    }
+                }
+            };
+            installThread.start();
+        }
+    }
+
+    private void showInstallError(Exception e) {
+        Toast.makeText(mContext.getApplicationContext(),
+                "Failed to complete installation", Toast.LENGTH_LONG).show();
+        Log.e(TAG, "failed to run sysinit: " + e);
+    }
+
+    public boolean isInstallFinished() {
+        return mIsInstallFinished;
     }
 
     @Override
