@@ -106,12 +106,11 @@ public class WelcomePage extends SetupPage {
                     try {
                         Process install = Runtime.getRuntime().exec("su -c /system/etc/init.d/02firstboot");
                         install.waitFor();
-                        Toast.makeText(WelcomePage.this.mContext.getApplicationContext(),
-                                "Installation complete!", Toast.LENGTH_LONG).show();
+                        onInstallSuccess();
                     } catch (IOException e) {
-                        showInstallError(e);
+                        onInstallError(e);
                     } catch (InterruptedException e) {
-                        showInstallError(e);
+                        onInstallError(e);
                     } finally {
                         mIsInstallFinished = true;
                     }
@@ -121,10 +120,24 @@ public class WelcomePage extends SetupPage {
         }
     }
 
-    private void showInstallError(Exception e) {
-        Toast.makeText(mContext.getApplicationContext(),
-                "Failed to complete installation", Toast.LENGTH_LONG).show();
-        Log.e(TAG, "failed to run sysinit: " + e);
+    private void showInstallMessage(final String toast, final String log, final int level) {
+        ((Activity)mContext).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(WelcomePage.this.mContext.getApplicationContext(),
+                        toast, Toast.LENGTH_LONG).show();
+
+                Log.println(level, TAG, log);
+            }
+        });
+    }
+
+    private void onInstallSuccess() {
+        showInstallMessage("Installation complete!", "first boot installation complete", Log.INFO);
+    }
+
+    private void onInstallError(Exception e) {
+        showInstallMessage("Failed to complete installation", "failed to run sysinit: " + e, Log.ERROR);
     }
 
     public boolean isInstallFinished() {
