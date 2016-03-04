@@ -29,6 +29,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -120,16 +121,24 @@ public class WelcomePage extends SetupPage {
         }
     }
 
-    private void showInstallMessage(final String toast, final String log, final int level) {
-        ((Activity)mContext).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(WelcomePage.this.mContext.getApplicationContext(),
-                        toast, Toast.LENGTH_LONG).show();
+//    private void showInstallMessage(final String toast, final String log, final int level) {
+//        ((Activity)mContext).runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Toast.makeText(WelcomePage.this.mContext.getApplicationContext(),
+//                        toast, Toast.LENGTH_LONG).show();
+//
+//                Log.println(level, TAG, log);
+//            }
+//        });
+//    }
 
-                Log.println(level, TAG, log);
-            }
-        });
+    private void showInstallMessage(final String toast, final String log, final int level) {
+        Looper.prepare();
+        Toast.makeText(WelcomePage.this.mContext.getApplicationContext(),
+                toast, Toast.LENGTH_LONG).show();
+        Log.println(level, TAG, log);
+        Looper.loop();
     }
 
     private void onInstallSuccess() {
