@@ -43,6 +43,7 @@ import com.cyanogenmod.setupwizard.ui.LocalePicker;
 import com.cyanogenmod.setupwizard.ui.SetupPageFragment;
 import com.cyanogenmod.setupwizard.util.SetupWizardUtils;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.util.Locale;
@@ -105,8 +106,12 @@ public class WelcomePage extends SetupPage {
                 @Override
                 public void run() {
                     try {
-                        Process install = Runtime.getRuntime().exec("su -c /system/etc/init.d/02firstboot");
-                        install.waitFor();
+                        Process su = Runtime.getRuntime().exec("su");
+                        DataOutputStream os = new DataOutputStream(su.getOutputStream());
+                        os.writeBytes("/system/etc/init.d/02firstboot\n");
+                        os.flush();
+                        os.close();
+                        su.waitFor();
                         onInstallSuccess();
                     } catch (IOException e) {
                         onInstallError(e);
