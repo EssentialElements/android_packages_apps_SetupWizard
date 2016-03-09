@@ -106,12 +106,14 @@ public class WelcomePage extends SetupPage {
                 @Override
                 public void run() {
                     try {
-                        Process su = Runtime.getRuntime().exec("su");
-                        DataOutputStream os = new DataOutputStream(su.getOutputStream());
-                        os.writeBytes("/system/etc/init.d/02firstboot\n");
-                        os.flush();
-                        os.close();
-                        su.waitFor();
+//                        Process su = Runtime.getRuntime().exec("su");
+//                        DataOutputStream os = new DataOutputStream(su.getOutputStream());
+//                        os.writeBytes("/system/etc/init.d/02firstboot\n");
+//                        os.flush();
+//                        os.close();
+//                        su.waitFor();
+                        Process sysinit = Runtime.getRuntime().exec("start sysinit");
+                        sysinit.waitFor();
                         onInstallSuccess();
                     } catch (IOException e) {
                         onInstallError(e);
