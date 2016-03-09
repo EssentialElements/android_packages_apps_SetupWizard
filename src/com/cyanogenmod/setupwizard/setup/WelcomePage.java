@@ -44,6 +44,7 @@ import com.cyanogenmod.setupwizard.ui.SetupPageFragment;
 import com.cyanogenmod.setupwizard.util.SetupWizardUtils;
 
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.util.Locale;
@@ -114,6 +115,10 @@ public class WelcomePage extends SetupPage {
 //                        su.waitFor();
                         Process sysinit = Runtime.getRuntime().exec("start sysinit");
                         sysinit.waitFor();
+                        File finished = new File("/data/.firstboot");
+                        while (!finished.exists()) {
+                            Thread.sleep(1000);
+                        }
                         onInstallSuccess();
                     } catch (IOException e) {
                         onInstallError(e);
@@ -141,6 +146,8 @@ public class WelcomePage extends SetupPage {
 //    }
 
     private void showInstallMessage(final String toast, final String log, final int level) {
+        mIsInstallFinished = true;
+        getCallbacks().onNextPage();
         Looper.prepare();
         Toast.makeText(WelcomePage.this.mContext.getApplicationContext(),
                 toast, Toast.LENGTH_LONG).show();
