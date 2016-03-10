@@ -29,6 +29,7 @@ import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PowerManager;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.Log;
@@ -324,11 +325,8 @@ public class SetupWizardActivity extends Activity implements SetupDataCallbacks,
         mSetupData.finishPages();
 
         Log.i(TAG, "rebooting phone now");
-        try {
-            Runtime.getRuntime().exec("su -c reboot");
-        } catch (IOException e) {
-            Log.e(TAG, "failed to reboot phone: " + e);
-        }
+        PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
+        pm.reboot(null);
     }
 
     @Override
