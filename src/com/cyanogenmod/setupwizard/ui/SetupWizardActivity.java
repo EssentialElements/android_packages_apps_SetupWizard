@@ -324,9 +324,14 @@ public class SetupWizardActivity extends Activity implements SetupDataCallbacks,
         tm.addClient(this);
         mSetupData.finishPages();
 
-        Log.i(TAG, "rebooting phone now");
-        PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
-        pm.reboot(null);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.i(TAG, "rebooting phone now");
+                PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
+                pm.reboot(null);
+            }
+        }, 5000);
     }
 
     @Override
