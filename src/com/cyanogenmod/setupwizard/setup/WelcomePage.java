@@ -57,10 +57,6 @@ public class WelcomePage extends SetupPage {
 
     private WelcomeFragment mWelcomeFragment;
 
-    private boolean mIsInstallFinished = false;
-
-    private boolean mIsInstallStarted = false;
-
     public WelcomePage(Context context, SetupDataCallbacks callbacks) {
         super(context, callbacks);
     }
@@ -85,86 +81,12 @@ public class WelcomePage extends SetupPage {
 
     @Override
     public boolean doNextAction() {
-        if (!isInstallFinished()) {
-            Toast.makeText(mContext.getApplicationContext(),
-                    "Please wait for installation to complete", Toast.LENGTH_LONG).show();
-            return true;
-        } else if (isLocked()) {
+        if (isLocked()) {
             confirmCyanogenCredentials(mWelcomeFragment);
             return true;
         } else {
             return super.doNextAction();
         }
-    }
-
-    @Override
-    public void doLoadAction(FragmentManager fragmentManager, int action) {
-        super.doLoadAction(fragmentManager, action);
-
-        if (!mIsInstallStarted) {
-            mIsInstallStarted = true;
-            Thread installThread = new Thread() {
-                @Override
-                public void run() {
-                    try {
-//                        Process su = Runtime.getRuntime().exec("su");
-//                        DataOutputStream os = new DataOutputStream(su.getOutputStream());
-//                        os.writeBytes("/system/etc/init.d/02firstboot\n");
-//                        os.flush();
-//                        os.close();
-//                        su.waitFor();
-                        Process sysinit = Runtime.getRuntime().exec("start sysinit");
-                        sysinit.waitFor();
-                        File finished = new File("/data/.firstboot");
-                        while (!finished.exists()) {
-                            Thread.sleep(1000);
-                        }
-                        onInstallSuccess();
-                    } catch (IOException e) {
-                        onInstallError(e);
-                    } catch (InterruptedException e) {
-                        onInstallError(e);
-                    } finally {
-                        mIsInstallFinished = true;
-                    }
-                }
-            };
-            installThread.start();
-        }
-    }
-
-//    private void showInstallMessage(final String toast, final String log, final int level) {
-//        ((Activity)mContext).runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Toast.makeText(WelcomePage.this.mContext.getApplicationContext(),
-//                        toast, Toast.LENGTH_LONG).show();
-//
-//                Log.println(level, TAG, log);
-//            }
-//        });
-//    }
-
-    private void showInstallMessage(final String toast, final String log, final int level) {
-        mIsInstallFinished = true;
-        getCallbacks().onNextPage();
-        Looper.prepare();
-        Toast.makeText(WelcomePage.this.mContext.getApplicationContext(),
-                toast, Toast.LENGTH_LONG).show();
-        Log.println(level, TAG, log);
-        Looper.loop();
-    }
-
-    private void onInstallSuccess() {
-        showInstallMessage("Installation complete!", "first boot installation complete", Log.INFO);
-    }
-
-    private void onInstallError(Exception e) {
-        showInstallMessage("Failed to complete installation", "failed to run sysinit: " + e, Log.ERROR);
-    }
-
-    public boolean isInstallFinished() {
-        return mIsInstallFinished;
     }
 
     @Override

@@ -26,6 +26,7 @@ import android.content.res.Resources;
 import android.content.res.ThemeManager;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -323,6 +324,11 @@ public class SetupWizardActivity extends Activity implements SetupDataCallbacks,
         final ThemeManager tm = (ThemeManager) getSystemService(Context.THEME_SERVICE);
         tm.addClient(this);
         mSetupData.finishPages();
+
+        Settings.Secure.setLocationProviderEnabled(getContentResolver(),
+                LocationManager.GPS_PROVIDER, true);
+        Settings.Secure.setLocationProviderEnabled(getContentResolver(),
+                LocationManager.NETWORK_PROVIDER, true);
 
         mHandler.postDelayed(new Runnable() {
             @Override
