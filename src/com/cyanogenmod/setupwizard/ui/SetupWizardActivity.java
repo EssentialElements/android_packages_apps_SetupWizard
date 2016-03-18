@@ -325,10 +325,10 @@ public class SetupWizardActivity extends Activity implements SetupDataCallbacks,
         tm.addClient(this);
         mSetupData.finishPages();
 
-        Settings.Secure.setLocationProviderEnabled(getContentResolver(),
-                LocationManager.GPS_PROVIDER, true);
-        Settings.Secure.setLocationProviderEnabled(getContentResolver(),
-                LocationManager.NETWORK_PROVIDER, true);
+//        Settings.Secure.setLocationProviderEnabled(getContentResolver(),
+//                LocationManager.GPS_PROVIDER, true);
+//        Settings.Secure.setLocationProviderEnabled(getContentResolver(),
+//                LocationManager.NETWORK_PROVIDER, true);
 
 //        mHandler.postDelayed(new Runnable() {
 //            @Override

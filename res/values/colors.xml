@@ -17,13 +17,13 @@
 <resources>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
-    <color name="page_background">#efefef</color>
+    <color name="page_background">#242d32</color>
 
-    <color name="primary">#00B1E5</color>
-    <color name="primary_dark">#00A2E5</color>
-    <color name="accent">#009789</color>
-    <color name="primary_text">#8a000000</color>
-    <color name="secondary_text">#727272</color>
+    <color name="primary">#242d32</color>
+    <color name="primary_dark">#dbed6d</color>
+    <color name="accent">#2a5ba7</color>
+    <color name="primary_text">#f0f3f4</color>
+    <color name="secondary_text">#d2dbdd</color>
     <color name="button_bar_text_enabled">#ff1e1e1e</color>
     <color name="button_bar_text_disabled">#321e1e1e</color>
     <color name="divider">#40000000</color>
