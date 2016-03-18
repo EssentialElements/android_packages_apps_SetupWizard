@@ -76,6 +76,7 @@
                         android:layout_marginLeft="@dimen/location_text_margin_left"
                         android:layout_marginRight="@dimen/location_text_margin_right"
                         android:paddingBottom="@dimen/content_margin_bottom"
+                        android:textColor="@color/secondary_text"
                         android:text="@string/backup_data_summary"
                         android:maxLines="5" />
 
@@ -112,6 +113,7 @@
                         android:layout_marginLeft="@dimen/location_text_margin_left"
                         android:layout_marginRight="@dimen/location_text_margin_right"
                         android:paddingBottom="@dimen/content_margin_bottom"
+                        android:textColor="@color/secondary_text"
                         android:text="@string/location_access_summary"
                         android:maxLines="5" />
 
@@ -148,6 +150,7 @@
                         android:layout_marginLeft="@dimen/location_text_margin_left"
                         android:layout_marginRight="@dimen/location_text_margin_right"
                         android:paddingBottom="@dimen/content_margin_bottom"
+                        android:textColor="@color/secondary_text"
                         android:text="@string/location_gps"
                         android:maxLines="5" />
 
@@ -183,6 +186,7 @@
                         android:layout_marginLeft="@dimen/location_text_margin_left"
                         android:layout_marginRight="@dimen/location_text_margin_right"
                         android:paddingBottom="@dimen/content_margin_bottom"
+                        android:textColor="@color/secondary_text"
                         android:text="@string/location_network"
                         android:maxLines="5" />
 

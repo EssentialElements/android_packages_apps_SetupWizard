@@ -24,11 +24,12 @@
     <color name="accent">#2a5ba7</color>
     <color name="primary_text">#f0f3f4</color>
     <color name="secondary_text">#d2dbdd</color>
-    <color name="button_bar_text_enabled">#ff1e1e1e</color>
-    <color name="button_bar_text_disabled">#321e1e1e</color>
+    <color name="button_bar_text_enabled">#ff242d32</color>
+    <color name="button_bar_text_disabled">#32242d32</color>
     <color name="divider">#40000000</color>
     <color name="header_bg">@color/primary</color>
     <color name="header_condensed_bg">@color/primary_dark</color>
-    <color name="button_bar_background">#e4e7e8</color>
+    <!--<color name="button_bar_background">#e4e7e8</color>-->
+    <color name="button_bar_background">@color/primary_dark</color>
     <color name="fingerprint_setup_text_color">#356bc4</color>
 </resources>

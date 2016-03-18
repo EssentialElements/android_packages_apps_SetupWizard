@@ -86,6 +86,7 @@
                             android:textSize="15sp"
                             android:lineSpacingExtra="@dimen/setup_line_spacing"
                             android:fadingEdge="horizontal"
+                            android:textColor="@color/secondary_text"
                             android:text="@string/setup_require_cyanogen_label"/>
 
                         <TextView
@@ -96,7 +97,7 @@
                             android:layout_alignStart="@+id/killswitch_title"
                             android:textSize="15sp"
                             android:lineSpacingExtra="@dimen/setup_line_spacing"
-                            android:textColor="?android:attr/textColorSecondary"
+                            android:textColor="@color/secondary_text"
                             android:text="@string/setup_device_locked_instructions"/>
                     </RelativeLayout>
 
@@ -134,6 +135,7 @@
                         android:layout_marginLeft="@dimen/location_text_margin_left"
                         android:layout_marginRight="@dimen/location_text_margin_right"
                         android:paddingBottom="@dimen/content_margin_bottom"
+                        android:textColor="@color/secondary_text"
                         android:text="@string/services_metrics_label"/>
 
                 </LinearLayout>
@@ -170,6 +172,7 @@
                         android:layout_marginLeft="@dimen/location_text_margin_left"
                         android:layout_marginRight="@dimen/location_text_margin_right"
                         android:paddingBottom="@dimen/content_margin_bottom"
+                        android:textColor="@color/secondary_text"
                         android:text="@string/services_metrics_label"/>
 
                 </LinearLayout>
@@ -206,6 +209,7 @@
                         android:layout_marginLeft="@dimen/location_text_margin_left"
                         android:layout_marginRight="@dimen/location_text_margin_right"
                         android:paddingBottom="@dimen/content_margin_bottom"
+                        android:textColor="@color/secondary_text"
                         android:text="@string/services_os_nav_keys_label"/>
 
                 </LinearLayout>

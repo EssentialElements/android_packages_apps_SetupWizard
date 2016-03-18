@@ -19,7 +19,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/please_wait_for_installation_to_complete"
-            android:id="@+id/textView" />
+            android:id="@+id/textView"
+            style="@style/PageSummaryText"/>
     </RelativeLayout>
 
 

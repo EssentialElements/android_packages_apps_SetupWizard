@@ -50,7 +50,7 @@
                     android:id="@+id/timezone_list"
                     android:layout_width="290dp"
                     android:layout_height="wrap_content"
-                    android:saveEnabled="false"/>
+                    android:saveEnabled="false" />
 
                 <TwoLineListItem
                     android:id="@+id/date_item"

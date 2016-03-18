@@ -51,6 +51,7 @@
     <style name="PageContent">
         <item name="android:background">@color/page_background</item>
         <item name="android:paddingTop">@dimen/content_margin_top</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="PageTitle">
@@ -66,11 +67,13 @@
     <style name="PageSummaryText">
         <item name="android:id">@android:id/summary</item>
         <item name="android:lineSpacingExtra">@dimen/setup_line_spacing</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="SpinnerItem">
         <item name="android:textSize">15sp</item>
         <item name="android:paddingLeft">@dimen/content_margin_left</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="ButtonBar" parent="@android:style/Widget.Material.ActionButton">
