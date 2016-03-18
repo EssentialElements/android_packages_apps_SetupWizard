@@ -29,12 +29,10 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.NumberPicker;
-import android.widget.Toast;
 
 import com.cyanogenmod.setupwizard.R;
 import com.cyanogenmod.setupwizard.SetupWizardApp;
@@ -43,10 +41,6 @@ import com.cyanogenmod.setupwizard.ui.LocalePicker;
 import com.cyanogenmod.setupwizard.ui.SetupPageFragment;
 import com.cyanogenmod.setupwizard.util.SetupWizardUtils;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InterruptedIOException;
 import java.util.Locale;
 
 public class WelcomePage extends SetupPage {

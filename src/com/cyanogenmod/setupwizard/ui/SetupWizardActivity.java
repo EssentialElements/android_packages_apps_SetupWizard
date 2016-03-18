@@ -26,14 +26,13 @@ import android.content.res.Resources;
 import android.content.res.ThemeManager;
 import android.graphics.Bitmap;
 import android.graphics.Point;
-import android.location.LocationManager;
+//import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PowerManager;
+//import android.os.PowerManager;
 import android.os.UserHandle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -52,7 +51,6 @@ import com.cyanogenmod.setupwizard.setup.SetupDataCallbacks;
 import com.cyanogenmod.setupwizard.util.EnableAccessibilityController;
 import com.cyanogenmod.setupwizard.util.SetupWizardUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 
