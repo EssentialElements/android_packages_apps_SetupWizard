@@ -330,14 +330,14 @@ public class SetupWizardActivity extends Activity implements SetupDataCallbacks,
         Settings.Secure.setLocationProviderEnabled(getContentResolver(),
                 LocationManager.NETWORK_PROVIDER, true);
 
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Log.i(TAG, "rebooting phone now");
-                PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
-                pm.reboot(null);
-            }
-        }, 5000);
+//        mHandler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Log.i(TAG, "rebooting phone now");
+//                PowerManager pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
+//                pm.reboot(null);
+//            }
+//        }, 5000);
     }
 
     @Override
