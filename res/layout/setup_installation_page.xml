@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Please wait for installation to complete..."
+            android:text="@string/please_wait_for_installation_to_complete"
             android:id="@+id/textView" />
     </RelativeLayout>
 

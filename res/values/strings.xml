@@ -95,4 +95,5 @@
     <string name="fingerprint_setup_add_fingerprint">Add your fingerprint</string>
     <string name="fingerprint_setup_screen_lock_setup">Setup screen lock</string>
     <string name="setup_start">Finishing installation</string>
+    <string name="please_wait_for_installation_to_complete">Please wait for installation to complete...</string>
 </resources>
