@@ -16,6 +16,7 @@ public class FinishSetupReceiver extends BroadcastReceiver {
         if (SetupWizardUtils.isDeviceLocked() || SetupWizardUtils.frpEnabled(context)) {
             return;
         }
+        Settings.Secure.putInt(context.getContentResolver(), Settings.Secure.SHOW_IME_WITH_HARD_KEYBOARD, 1);
         Settings.Global.putInt(context.getContentResolver(), Settings.Global.DEVICE_PROVISIONED, 1);
         Settings.Secure.putInt(context.getContentResolver(),
                 Settings.Secure.USER_SETUP_COMPLETE, 1);
