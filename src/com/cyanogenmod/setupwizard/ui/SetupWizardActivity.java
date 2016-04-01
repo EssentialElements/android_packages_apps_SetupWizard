@@ -33,6 +33,7 @@ import android.os.Handler;
 //import android.os.PowerManager;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -443,6 +444,8 @@ public class SetupWizardActivity extends Activity implements SetupDataCallbacks,
         mFinishRunnables.add(new Runnable() {
             @Override
             public void run() {
+                Log.i(TAG, "finalizeSetup finish runnable");
+                Settings.System.putInt(getContentResolver(), Settings.System.USER_ROTATION, 1);
                 Settings.Global.putInt(getContentResolver(), Settings.Global.DEVICE_PROVISIONED, 1);
                 Settings.Secure.putInt(getContentResolver(),
                         Settings.Secure.USER_SETUP_COMPLETE, 1);
